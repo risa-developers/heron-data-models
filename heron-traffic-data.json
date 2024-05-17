@@ -1,0 +1,59 @@
+{
+  "title": "Heron traffic data schema",
+  "description": "Risa's Middleware data model, for traffic data",
+  "type": "object",
+  "allOf": [
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Property. Format has to be urn:ngsi-ld:TrafficData:xxxx "
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "TrafficData"
+          ],
+          "description": "Property. NGSI Entity type. It has to be TrafficData"
+        },
+        "loopName": {
+          "type": "string",
+          "description": "Property."
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Property. Identifier format of any NGSI entity. Relationship. Model:'https://schema.org/URL'. A reference to the device which captured this data"
+        },
+        "direction": {
+            "type": "string",
+            "description": "Property."
+        },
+        "lane": {
+            "type": "number",
+            "description": "Property."
+        },
+        "occupancy": {
+            "type": "number",
+            "description": "Property."
+        },
+        "averageSpeed": {
+            "type": "number",
+            "description": "Property."
+        },
+        "totalVolume": {
+            "type": "number",
+            "description": "Property."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type"
+  ]
+}

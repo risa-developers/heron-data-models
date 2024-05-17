@@ -1,0 +1,590 @@
+{
+  "title": "Heron weather observed schema",
+  "description": "Risa's Middleware data model, based on weather observed schema",
+  "type": "object",
+  "basedOn": "https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherObserved/schema.json",
+  "allOf": [
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Property. Format has to be urn:ngsi-ld:WeatherObserved:xxxx "
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "WeatherObserved"
+          ],
+          "description": "Property. NGSI Entity type. It has to be WeatherObserved"
+        },
+        "location": {
+          "oneOf": [
+            {
+              "title": "GeoJSON Point",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. Point",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "Point"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "title": "GeoJSON LineString",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. LineString",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "LineString"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "title": "GeoJSON Polygon",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. Polygon",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "Polygon"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "minItems": 4,
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "title": "GeoJSON MultiPoint",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. MultiPoint",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MultiPoint"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "title": "GeoJSON MultiLineString",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. MultiLineString",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MultiLineString"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "title": "GeoJSON MultiPolygon",
+              "type": "object",
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "description": "GeoProperty. Geojson reference to the item. MultiLineString",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MultiPolygon"
+                  ]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "minItems": 4,
+                      "items": {
+                        "type": "array",
+                        "minItems": 2,
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "bbox": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          ],
+          "description": "GeoProperty. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+        },
+        "airPressureTendency": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Amount of atmospheric pressure change during a specified period of time. Units:'Kilopascal (kPa)"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "airTemperatureTSA": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Air temperature. Units:'Degree Celsius (°C)'"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "dewPoint": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Model:'https://schema.org/Number'. Units:'Celsius degrees'. The dew point encoded as a number. Observed temperature to which air must be cooled to become saturated with water vapor"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "freezePoint": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Model:'https://schema.org/Number'. Units:'Celsius degrees'. The freezing point encoded as a number."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "friction": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "icePercentage": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "precipitateIntensity": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. The ratio of the total amount of rain (rainfall depth). Units:'Millimetre per hour (mm/h)'"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Property description."
+                }
+              }
+            }
+          ]
+        },
+        "precipitateType": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Type of Precipitation"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Property description."
+                }
+              }
+            }
+          ]
+        },
+        "precipitation": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Model:'https://schema.org/Number'. Amount of water rain registered. Units:'Liters per square meter (L/m3)'. "
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "relativeHumidity": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Water vapor relative to the temperature of the air. Units:'Percent (%)"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "roadCondition": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Property description."
+                }
+              }
+            }
+          ]
+        },
+        "salineConcentration": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "subSurfaceTemperature": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "surfaceTemperature": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "visibility": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Units:'meters (m)'"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "waterDepth": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Units:'meters (m)'"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "windDirection": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property. Direction from which the wind originates. Units:'Degree of arc (°)'"
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "windSpeed": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "windSpeedAverage": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "windSpeedPeak": {
+          "allOf": [
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Property."
+                },
+                "error": {
+                  "type": "number",
+                  "description": "Error code."
+                }
+              }
+            }
+          ]
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Property. Identifier format of any NGSI entity. Relationship. Model:'https://schema.org/URL'. A reference to the device which captured this observation"
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type"
+  ]
+}
