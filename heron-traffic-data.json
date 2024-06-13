@@ -45,6 +45,42 @@
             "type": "number",
             "description": "Property."
         },
+        "volumeCat0": {
+          "type": "number",
+          "description": "Property. Volume of vehicles in the unknown category."
+        },
+        "volumeCat1": {
+          "type": "number",
+          "description": "Property. Volume of motorcycles."
+        },
+        "volumeCat2": {
+          "type": "number",
+          "description": "Property. Volume of cars."
+        },
+        "volumeCat3": {
+          "type": "number",
+          "description": "Property. Volume of vans."
+        },
+        "volumeCat4": {
+          "type": "number",
+          "description": "Property. Volume of car trailers."
+        },
+        "volumeCat5": {
+          "type": "number",
+          "description": "Property. Volume of buses."
+        },
+        "volumeCat6": {
+          "type": "number",
+          "description": "Property. Volume of trucks."
+        },
+        "volumeCat7": {
+          "type": "number",
+          "description": "Property. Volume of truck trailers."
+        },
+        "volumeCat8": {
+          "type": "number",
+          "description": "Property. Volume of articulated vehicles."
+        },
         "timestamp": {
           "type": "string",
           "format": "date-time"
